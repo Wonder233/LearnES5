@@ -1,5 +1,5 @@
 /**
- * 1. Ö§³Ö IE ÔçÆÚ°æ±¾µÄ´´½¨ XHR ¶ÔÏó
+ * 1. æ”¯æŒ IE æ—©æœŸç‰ˆæœ¬çš„åˆ›å»º XHR å¯¹è±¡
  * @returns {Window.XMLHttpRequest|XMLHttpRequest}
  */
 function createXHR() {
@@ -15,7 +15,7 @@ function createXHR() {
                     arguments.callee.activeXString = versions[i];
                     break;
                 } catch (ex) {
-                    //Ìø¹ı
+                    //è·³è¿‡
                 }
             }
         }
@@ -27,71 +27,71 @@ function createXHR() {
 
 var xhr = createXHR();
 
-//5. ¶àÊıÇé¿öÏÂ·¢ËÍÒì²½ÇëÇó£¬ ÈÃ JavaScript ¼ÌĞøÖ´ĞĞ¶ø²»±ØµÈ´ıÏìÓ¦¡£
-//´ËÊ±£¬¼ì²â XHR ¶ÔÏóµÄ readyState ÊôĞÔ£¬¸ÃÊôĞÔ±íÊ¾ ÇëÇó/ÏìÓ¦ ¹ı³ÌµÄµ±Ç°»î¶¯½×¶Î¡£
-//Ö»Òª readyState ÊôĞÔµÄÖµ´ÓÒ»¸ö±ä³ÉÁíÒ»¸ö£¬¾Í»á´¥·¢Ò»´Î readystatechage ÊÂ¼ş¡£
+//5. å¤šæ•°æƒ…å†µä¸‹å‘é€å¼‚æ­¥è¯·æ±‚ï¼Œ è®© JavaScript ç»§ç»­æ‰§è¡Œè€Œä¸å¿…ç­‰å¾…å“åº”ã€‚
+//æ­¤æ—¶ï¼Œæ£€æµ‹ XHR å¯¹è±¡çš„ readyState å±æ€§ï¼Œè¯¥å±æ€§è¡¨ç¤º è¯·æ±‚/å“åº” è¿‡ç¨‹çš„å½“å‰æ´»åŠ¨é˜¶æ®µã€‚
+//åªè¦ readyState å±æ€§çš„å€¼ä»ä¸€ä¸ªå˜æˆå¦ä¸€ä¸ªï¼Œå°±ä¼šè§¦å‘ä¸€æ¬¡ readystatechage äº‹ä»¶ã€‚
 xhr.onreadystatechange = function () {
     if (xhr.readyState == 4) {
         if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
             alert(xhr.responseText);
         } else {
-            alert("ÇëÇó²»³É¹¦" + xhr.status);
+            alert("è¯·æ±‚ä¸æˆåŠŸ" + xhr.status);
         }
     }
 };
 
 
-//2. open() Æô¶¯Ò»¸öÇëÇóÒÔ±¸·¢ËÍ
+//2. open() å¯åŠ¨ä¸€ä¸ªè¯·æ±‚ä»¥å¤‡å‘é€
 xhr.open("get", "example.txt", false);
 
-//3. send() ·¢ËÍÌØ¶¨µÄÇëÇó
+//3. send() å‘é€ç‰¹å®šçš„è¯·æ±‚
 xhr.send(null);
 
-//4. ½ÓÊÕµ½ÏìÓ¦ºó£¬µÚÒ»²½¼ì²é status ÊôĞÔ£¬ÒÔÈ·¶¨ÏàÓ¦ÒÑ¾­³É¹¦·µ»Ø¡£
-// ÒÔÏÂÊÇÍ¬²½ÇëÇóËùÓÃµÄ·½·¨
+//4. æ¥æ”¶åˆ°å“åº”åï¼Œç¬¬ä¸€æ­¥æ£€æŸ¥ status å±æ€§ï¼Œä»¥ç¡®å®šç›¸åº”å·²ç»æˆåŠŸè¿”å›ã€‚
+// ä»¥ä¸‹æ˜¯åŒæ­¥è¯·æ±‚æ‰€ç”¨çš„æ–¹æ³•
 /*
 if((xhr.status >= 200 && xhr.status <300) || xhr.status == 304){
     alert(xhr.responseText);
 }else{
-    alert("ÇëÇó²»³É¹¦"+xhr.status);
+    alert("è¯·æ±‚ä¸æˆåŠŸ"+xhr.status);
 }
 */
 
-//6. ½ÓÊÕµ½ÏìÓ¦Ö®Ç°¿ÉÒÔµ÷ÓÃ abort() È¡ÏûÒì²½ÇëÇó
+//6. æ¥æ”¶åˆ°å“åº”ä¹‹å‰å¯ä»¥è°ƒç”¨ abort() å–æ¶ˆå¼‚æ­¥è¯·æ±‚
 xhr.abort();
 
 /**
- * 7. Ê¹ÓÃ setRequestHeader() ·½·¨¿ÉÒÔÉèÖÃ×Ô¶¨ÒåµÄÇëÇóÍ·²¿ĞÅÏ¢¡£
- * ¸Ã·½·¨½ÓÊÕÁ½¸ö²ÎÊı setRequestHeader(name,value)
- * @param name Í·²¿×Ö¶ÎµÄÃû³Æ
- * @param value Í·²¿×Ö¶ÎµÄÖµ
+ * 7. ä½¿ç”¨ setRequestHeader() æ–¹æ³•å¯ä»¥è®¾ç½®è‡ªå®šä¹‰çš„è¯·æ±‚å¤´éƒ¨ä¿¡æ¯ã€‚
+ * è¯¥æ–¹æ³•æ¥æ”¶ä¸¤ä¸ªå‚æ•° setRequestHeader(name,value)
+ * @param name å¤´éƒ¨å­—æ®µçš„åç§°
+ * @param value å¤´éƒ¨å­—æ®µçš„å€¼
  */
 xhr.open("get", "example.txt", true);
 xhr.setRequestHeader("MyHeader", "MyValue");
 xhr.send(null);
 
 /**
- * 8. Ê¹ÓÃ getResponseHeader() ·½·¨¿ÉÒÔÈ¡µÃÏàÓ¦µÄÏìÓ¦Í·²¿ĞÅÏ¢¡£
+ * 8. ä½¿ç”¨ getResponseHeader() æ–¹æ³•å¯ä»¥å–å¾—ç›¸åº”çš„å“åº”å¤´éƒ¨ä¿¡æ¯ã€‚
  */
 var myHeader = xhr.getResponseHeader("MyHeader");
 
 /**
- * 9. Ê¹ÓÃ getAllResponseHeaders() ·½·¨¿ÉÒÔÈ¡µÃÒ»¸ö°üº¬ËùÓĞÍ·²¿ĞÅÏ¢µÄ³¤×Ö·û´®¡£
+ * 9. ä½¿ç”¨ getAllResponseHeaders() æ–¹æ³•å¯ä»¥å–å¾—ä¸€ä¸ªåŒ…å«æ‰€æœ‰å¤´éƒ¨ä¿¡æ¯çš„é•¿å­—ç¬¦ä¸²ã€‚
  */
 var allHeaders = xhr.getAllResponseHeaders();
 
-//10. GET ÇëÇó£º³£ÓÃÓÚÏò·şÎñÆ÷²éÑ¯Ä³Ğ©ĞÅÏ¢¡£
-//½«²éÑ¯×Ö·û²ÎÊı×·¼Óµ½ URL µÄÄ©Î²£¬ÒÔ±ã½«ĞÅÏ¢·¢ËÍ¸ø·şÎñÆ÷¡£
+//10. GET è¯·æ±‚ï¼šå¸¸ç”¨äºå‘æœåŠ¡å™¨æŸ¥è¯¢æŸäº›ä¿¡æ¯ã€‚
+//å°†æŸ¥è¯¢å­—ç¬¦å‚æ•°è¿½åŠ åˆ° URL çš„æœ«å°¾ï¼Œä»¥ä¾¿å°†ä¿¡æ¯å‘é€ç»™æœåŠ¡å™¨ã€‚
 xhr.open("get", "example.php?name1=value1&name2=value2", true);
 
-// GET ÇëÇó¾­³£·¢ÉúµÄÒ»¸ö´íÎó£º²éÑ¯×Ö·û´®µÄ¸ñÊ½ÓĞÎÊÌâ¡£
+// GET è¯·æ±‚ç»å¸¸å‘ç”Ÿçš„ä¸€ä¸ªé”™è¯¯ï¼šæŸ¥è¯¢å­—ç¬¦ä¸²çš„æ ¼å¼æœ‰é—®é¢˜ã€‚
 
 /**
- * ²éÑ¯×Ö·û´®ÖĞÃ¿¸ö²ÎÊıµÄÃû³ÆºÍÖµ¶¼±ØĞëÊ¹ÓÃ encodeURIComponet() ½øĞĞ±àÂëÔÙ·Å½ø URL Ä©Î²£»
- * ËùÓĞÃû-Öµ¶Ô ¶¼±ØĞëÓÉ ºÍºÅ£¨&£©·Ö¸ô
- * @param url ÒªÌí¼Ó²ÎÊıµÄ URL
- * @param name ²ÎÊıµÄÃû³Æ
- * @param valule ²ÎÊıµÄÖµ
+ * æŸ¥è¯¢å­—ç¬¦ä¸²ä¸­æ¯ä¸ªå‚æ•°çš„åç§°å’Œå€¼éƒ½å¿…é¡»ä½¿ç”¨ encodeURIComponet() è¿›è¡Œç¼–ç å†æ”¾è¿› URL æœ«å°¾ï¼›
+ * æ‰€æœ‰å-å€¼å¯¹ éƒ½å¿…é¡»ç”± å’Œå·ï¼ˆ&ï¼‰åˆ†éš”
+ * @param url è¦æ·»åŠ å‚æ•°çš„ URL
+ * @param name å‚æ•°çš„åç§°
+ * @param valule å‚æ•°çš„å€¼
  * @returns {string|*}
  */
 function addURIParam(url, name, valule) {
@@ -102,14 +102,14 @@ function addURIParam(url, name, valule) {
 
 var url = "example.php";
 
-//Ìí¼Ó²ÎÊı
+//æ·»åŠ å‚æ•°
 url = addURIParam(url,"name","Nicholas");
 url = addURIParam(url,"book","Professional JavaScript");
 
-//³õÊ¼»¯ÇëÇó
+//åˆå§‹åŒ–è¯·æ±‚
 xhr.open("get",url,false);
 
-//11. POST ÇëÇó£º³£ÓÃÓÚÏò·şÎñÆ÷·¢ËÍÓ¦¸Ã±»±£´æµÄÊı¾İ¡£
+//11. POST è¯·æ±‚ï¼šå¸¸ç”¨äºå‘æœåŠ¡å™¨å‘é€åº”è¯¥è¢«ä¿å­˜çš„æ•°æ®ã€‚
 xhr.open("post","postexample.php",true);
 xhr.setRequestHeader("Content-Type","application/x-www-form-unlencoded");
 var form = document.getElementById("user-info");

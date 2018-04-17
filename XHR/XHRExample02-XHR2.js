@@ -11,7 +11,7 @@ function createXHR() {
                     arguments.callee.activeXString = versions[i];
                     break;
                 } catch (ex) {
-                    //Ìø¹ı
+                    //è·³è¿‡
                 }
             }
         }
@@ -21,11 +21,11 @@ function createXHR() {
     }
 }
 
-//1. XHR2 ¶¨ÒåÁË FormData ÀàĞÍ£ºĞòÁĞ»¯±íµ¥ÒÔ¼°´´½¨ÓÚ±íµ¥¸ñÊ½ÏàÍ¬µÄÊı¾İ£¨ÓÃÓÚ XHR ´«Êä£©
+//1. XHR2 å®šä¹‰äº† FormData ç±»å‹ï¼šåºåˆ—åŒ–è¡¨å•ä»¥åŠåˆ›å»ºäºè¡¨å•æ ¼å¼ç›¸åŒçš„æ•°æ®ï¼ˆç”¨äº XHR ä¼ è¾“ï¼‰
 var data = new FormData();
 data.append("name","Nicholas");
 
-//Ò²¿ÉÒÔÏò±íµ¥ÔªËØµÄÊı¾İÔ¤ÏÈÏòÆäÖĞÌîÈë¼üÖµ¶Ô
+//ä¹Ÿå¯ä»¥å‘è¡¨å•å…ƒç´ çš„æ•°æ®é¢„å…ˆå‘å…¶ä¸­å¡«å…¥é”®å€¼å¯¹
 var data = new FormData(document.forms[0]);
 
 var xhr = createXHR();
@@ -34,7 +34,7 @@ xhr.onreadystatechange = function () {
         if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
             alert(xhr.responseText);
         } else {
-            alert("ÇëÇó²»³É¹¦" + xhr.status);
+            alert("è¯·æ±‚ä¸æˆåŠŸ" + xhr.status);
         }
     }
 };
@@ -42,9 +42,9 @@ xhr.open("post","postexample.php",true);
 var form = document.getElementById("user-info");
 xhr.send(new FormData(form));
 
-//2. XHR ¶ÔÏóÌí¼ÓÁËÒ»¸ö timeout ÊôĞÔ£ºÇëÇóÔÙµÈ´ıÏìÓ¦¶àÉÙºÁÃëÖ®ºó¾ÍÖÕÖ¹¡£
-xhr.timeout = 1000; //½«³¬ÊĞÉèÖÃÎª 1 ÃëÖÓ£¨½öÊÊÓÃÓÚ IE8+£©
+//2. XHR å¯¹è±¡æ·»åŠ äº†ä¸€ä¸ª timeout å±æ€§ï¼šè¯·æ±‚å†ç­‰å¾…å“åº”å¤šå°‘æ¯«ç§’ä¹‹åå°±ç»ˆæ­¢ã€‚
+xhr.timeout = 1000; //å°†è¶…å¸‚è®¾ç½®ä¸º 1 ç§’é’Ÿï¼ˆä»…é€‚ç”¨äº IE8+ï¼‰
 xhr.ontimeout = function () {
-    alert("ÇëÇóÔÚ 1 ÃëÄÚÃ»ÓĞÏìÓ¦¡£");
+    alert("è¯·æ±‚åœ¨ 1 ç§’å†…æ²¡æœ‰å“åº”ã€‚");
 }
 

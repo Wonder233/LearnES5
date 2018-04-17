@@ -14,7 +14,7 @@ var handler = {
 var btn = document.getElementById("my-btn");
 btn.addEventListener("click",bind(handler.handlerClick,handler),false);
 
-//Ê¹ÓÃbind°ó¶¨µÄº¯ÊýÎÞ·¨ÒÆ³ý
+//ä½¿ç”¨bindç»‘å®šçš„å‡½æ•°æ— æ³•ç§»é™¤
 var btn1 = document.getElementById("remove");
 btn1.addEventListener("click", function () {
     console.log("remove")

@@ -1,4 +1,4 @@
-//setTimeout¿ÉÒÔÍùÇ°ÃæµÄº¯Êı´«µİ²ÎÊı
+//setTimeoutå¯ä»¥å¾€å‰é¢çš„å‡½æ•°ä¼ é€’å‚æ•°
 
 function add (a,b){
     console.log(a+b);

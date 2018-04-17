@@ -1,5 +1,5 @@
 /**
- * ÓÃ ES5 Ä£Äâ ES6 ÖÐµÄ super¹Ø¼ü×Ö
+ * ç”¨ ES5 æ¨¡æ‹Ÿ ES6 ä¸­çš„ superå…³é”®å­—
  */
 
 function Animal(){
@@ -18,7 +18,7 @@ function Cat(){
 Cat.prototype = new Animal();
 Cat.prototype.constructor = Cat;
 Cat.prototype.__super = Animal;
-//»òÕß
+//æˆ–è€…
 //Cat.prototype.__super = Cat.prototype;
 
 Cat.prototype.getName2= function () {
