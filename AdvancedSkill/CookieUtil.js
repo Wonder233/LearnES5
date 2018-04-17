@@ -1,5 +1,6 @@
 var CookieUtil = {
     get: function (name) {
+
         var cookieName = encodeURIComponent(name) + "=",
             cookieStart = document.cookie.indexOf(cookieName),
             cookieValue = null;
@@ -14,8 +15,19 @@ var CookieUtil = {
         }
         return cookieValue;
     },
+    /**
+     * 保存到 cookie
+     *
+     * @param {any} name 名
+     * @param {any} value 值
+     * @param {any} expires 指定了cookie的生存期，默认情况下cookie是暂时存在的
+     * @param {any} path 指定与cookie关联在一起的网页
+     * @param {any} domain 使多个web服务器共享cookie
+     * @param {any} secure 布尔值，指定在网络上如何传输cookie
+     */
     set: function (name, value, expires, path, domain, secure) {
         var cookieText = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+
         if (expires instanceof Date) {
             cookieText += "; expires=" + expires.toGMTString();
         }
@@ -39,6 +51,7 @@ var CookieUtil = {
 CookieUtil.set("name", "Nicholas");
 CookieUtil.set("age", "23");
 log(decodeURIComponent(document.cookie))
+
 
 var SubCookieUtil = {
     get: function (name, subName) {

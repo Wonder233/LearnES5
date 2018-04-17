@@ -1,45 +1,44 @@
-
-// ÊµÏÖÒ»¸ö¶ÔÏó¿ËÂ¡º¯Êı clone£¬
-// ¿ÉÒÔ¶ÔJavaScriptÖĞµÄ5ÖÖÖ÷ÒªµÄÊı¾İÀàĞÍ£¨°üÀ¨Number¡¢String¡¢Object¡¢Array¡¢Boolean£©½øĞĞÖµ¸´ÖÆ¡£
+// å®ç°ä¸€ä¸ªå¯¹è±¡å…‹éš†å‡½æ•° cloneï¼Œ
+// å¯ä»¥å¯¹JavaScriptä¸­çš„5ç§ä¸»è¦çš„æ•°æ®ç±»å‹ï¼ˆåŒ…æ‹¬Numberã€Stringã€Objectã€Arrayã€Booleanï¼‰è¿›è¡Œå€¼å¤åˆ¶ã€‚
 /**
- * ¶ÔÏó¿ËÂ¡
- * Ö§³Ö»ù±¾Êı¾İÀàĞÍ¼°¶ÔÏó
- * µİ¹é·½·¨
+ * å¯¹è±¡å…‹éš†
+ * æ”¯æŒåŸºæœ¬æ•°æ®ç±»å‹åŠå¯¹è±¡
+ * é€’å½’æ–¹æ³•
  */
 function clone(obj) {
-    var o;
-    switch (typeof obj) {
-        case "undefined":
-            break;
-        case "string":
-            o = obj + "";
-            break;
-        case "number":
-            o = obj - 0;
-            break;
-        case "boolean":
-            o = obj;
-            break;
-        case "object": // object ·ÖÎªÁ½ÖÖÇé¿ö ¶ÔÏó£¨Object£©»òÊı×é£¨Array£©
-            if (obj === null) {
-                o = null;
-            } else {
-                if (Object.prototype.toString.call(obj).slice(8, -1) === "Array") {
-                    o = [];
-                    for (var i = 0; i < obj.length; i++) {
-                        o.push(clone(obj[i]));
-                    }
-                } else {
-                    o = {};
-                    for (var k in obj) {
-                        o[k] = clone(obj[k]);
-                    }
-                }
-            }
-            break;
-        default:
-            o = obj;
-            break;
-    }
-    return o;
+  var o;
+  switch (typeof obj) {
+    case 'undefined':
+      break;
+    case 'string':
+      o = obj + '';
+      break;
+    case 'number':
+      o = obj - 0;
+      break;
+    case 'boolean':
+      o = obj;
+      break;
+    case 'object': // object åˆ†ä¸ºä¸¤ç§æƒ…å†µ å¯¹è±¡ï¼ˆObjectï¼‰æˆ–æ•°ç»„ï¼ˆArrayï¼‰
+      if (obj === null) {
+        o = null;
+      } else {
+        if (Object.prototype.toString.call(obj).slice(8, -1) === 'Array') {
+          o = [];
+          for (var i = 0; i < obj.length; i++) {
+            o.push(clone(obj[i]));
+          }
+        } else {
+          o = {};
+          for (var k in obj) {
+            o[k] = clone(obj[k]);
+          }
+        }
+      }
+      break;
+    default:
+      o = obj;
+      break;
+  }
+  return o;
 }

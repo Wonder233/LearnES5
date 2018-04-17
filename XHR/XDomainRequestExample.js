@@ -13,26 +13,25 @@
  * XDR 的 open( type,url ) 方法 只有两个参数，因为它的请求都是异步的。
  */
 var xdr = new XDomainRequest();
-xdr.onload = function () {
-    alert(xdr.responseText);
+xdr.onload = function() {
+  alert(xdr.responseText);
 };
-xdr.onerror = function () {
-  alert("发生了一个错误。");
+xdr.onerror = function() {
+  alert('发生了一个错误。');
 };
 
 xdr.timeout = 1000;
-xdr.ontimeout = function () {
-  alert("请求响应太长。");
+xdr.ontimeout = function() {
+  alert('请求响应太长。');
 };
 
-xdr.open("get","http://www.somewhere-else.com/page/");
+xdr.open('get', 'http://www.somewhere-else.com/page/');
 xdr.send(null);
 
 /* 支持 post ，要将头部 Content-Type 修改，直接使用 contentType 属性即可 */
-xdr.open("post","http://www.somewhere-else.com/page/");
-xdr.contentType = "application/x-www-form-unlencoded";
-xdr.send("name1=value1&name2=value2");
-
+xdr.open('post', 'http://www.somewhere-else.com/page/');
+xdr.contentType = 'application/x-www-form-unlencoded';
+xdr.send('name1=value1&name2=value2');
 
 /**
  * 3. 其他平台 FireFox 3+、Safari 4+、Chrome、IOS 版 Safari 和 Android 平台中的 WebKit 都通过
@@ -40,16 +39,16 @@ xdr.send("name1=value1&name2=value2");
  *    在尝试打开不同来源的资源时，无需额外编写代码就可以触发这个行为。
  */
 var xhr = createXHR();
-xhr.onreadystatechange = function () {
-    if (xhr.readyState == 4) {
-        if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
-            alert(xhr.responseText);
-        } else {
-            alert("请求不成功" + xhr.status);
-        }
+xhr.onreadystatechange = function() {
+  if (xhr.readyState == 4) {
+    if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+      alert(xhr.responseText);
+    } else {
+      alert('请求不成功' + xhr.status);
     }
+  }
 };
-xhr.open("get", "http://www.somewhere-else.com/page/", true);
+xhr.open('get', 'http://www.somewhere-else.com/page/', true);
 xhr.send(null);
 
 /**
@@ -66,24 +65,24 @@ xhr.send(null);
  * 检测 XHR 是否支持 CORS 的最简单方式，即检查是否存在 withCredentials 属性。
  * 再结合检测 XDomainRequest 对象是否存在。
  */
-function createCORSRequest(method,url){
-    var xhr = new XMLHttpRequest();
-    if("withCredentials" in xhr){
-        xhr.open(method,url,true);
-    }else if(typeof XDomainRequest != "undefined"){
-        xhr = new XDomainRequest();
-        xhr.open(method,url);
-    }else{
-        xhr = null;
-    }
-    return xhr;
+function createCORSRequest(method, url) {
+  var xhr = new XMLHttpRequest();
+  if ('withCredentials' in xhr) {
+    xhr.open(method, url, true);
+  } else if (typeof XDomainRequest != 'undefined') {
+    xhr = new XDomainRequest();
+    xhr.open(method, url);
+  } else {
+    xhr = null;
+  }
+  return xhr;
 }
-var request = createCORSRequest("get","http://www.somewhere-else.com/page/");
-if(request){
-    request.onload = function () {
-        //对 request。responseText 进行处理
-    }
-    request.send();
+var request = createCORSRequest('get', 'http://www.somewhere-else.com/page/');
+if (request) {
+  request.onload = function() {
+    //对 request。responseText 进行处理
+  };
+  request.send();
 }
 
 /**
@@ -100,10 +99,10 @@ if(request){
  * 缺点：（1）只能发送 GET 请求。 （2）无法访问服务器的响应文本，因此只能用于浏览器与服务器间的单向通信。
  */
 var img = new Image();
-img.onload = img.onerror = function () {
-    alert("Done!");
+img.onload = img.onerror = function() {
+  alert('Done!');
 };
-img.src = "http://www.example.com/test?name=Nicholas";
+img.src = 'http://www.example.com/test?name=Nicholas';
 
 /**
  * 6.2 JSONP：JSON with padding（填充式 JSON 或 参数式 JSON）
@@ -118,12 +117,20 @@ img.src = "http://www.example.com/test?name=Nicholas";
  * 使用：JSONP 通过动态 <script> 元素来使用，使用时可以为 src 属性制定一个跨域 URL。
  * 因为 JSONP 是有效的 JavaScript 代码，所以在请求完成后，即在 JSONP 响应加载到页面中以后，就会立即执行。
  */
-function handleResponse(response){
-    alert("你正在 IP 地址为：" + response.ip +" 响应城市为："+response.city+" 区域名为："+response.regionName+"的网中");
+function handleResponse(response) {
+  alert(
+    '你正在 IP 地址为：' +
+      response.ip +
+      ' 响应城市为：' +
+      response.city +
+      ' 区域名为：' +
+      response.regionName +
+      '的网中'
+  );
 }
-var script = document.createElement("script");
-script.src = "http://freegeoip.net/json/?callback=handleResponse";
-document.body.insertBefore(script,document.firstChild);
+var script = document.createElement('script');
+script.src = 'http://freegeoip.net/json/?callback=handleResponse';
+document.body.insertBefore(script, document.firstChild);
 
 /**
  * JSONP
@@ -142,30 +149,26 @@ document.body.insertBefore(script,document.firstChild);
  */
 
 /* 必须给 WebSocket 构造函数传入绝对 URL。 */
-var socket = new WebSocket("ws://www.example.com/server.php")
-socket.send("Hello World!")
+var socket = new WebSocket('ws://www.example.com/server.php');
+socket.send('Hello World!');
 /* WebSocket 只能通过连接发送纯文本数据，因此复杂的数据结构必须进行序列化 */
 var message = {
-    time:new Date(),
-    text:"hello world",
-    clientId:"asdfg987654"
+  time: new Date(),
+  text: 'hello world',
+  clientId: 'asdfg987654'
 };
 socket.send(JSON.stringify(message));
 
 /* 服务器向客户端发来消息时，WebSocket 对象会触发 message 事件。 */
-socket.onmessage = function (event) {
+socket.onmessage = function(event) {
   var data = event.data;
 
-    //处理数据
+  //处理数据
 };
 
-socket.onopen = function () {
+socket.onopen = function() {};
+socket.onerror = function() {};
 
-};
-socket.onerror = function () {
-
-};
-
-socket.onclose = function (event) {
-    var data = event.data;
+socket.onclose = function(event) {
+  var data = event.data;
 };
